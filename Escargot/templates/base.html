@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    {% block title %} {% endblock %}
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body class="is-preload">
+<div id="main">
+    {% block content %} {% endblock %}
+</div>
+
+
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/race.js' %}"></script>
+
+</body>
+</html>
