@@ -6,7 +6,7 @@ function init_game() {
     var steps = parseInt(document.getElementById('steps').value);
     var escargots = parseInt(document.getElementById('escargots').value);
     var chances = parseInt(document.getElementById('chances').value);
-    var steps_size = (window.innerWidth - 150) / steps; // Recalculer la taille des étapes
+    var steps_size = (window.innerWidth - 150) / steps; 
 
     plateau.innerHTML = "";
 
@@ -25,7 +25,7 @@ function init_game() {
 }
 
 function startRaceButtonClicked() {
-    document.getElementById('controls').setAttribute('hidden', 'hidden')
+    document.getElementById('race_container').setAttribute('hidden', 'hidden')
     var { tickspeed, steps, escargots, chances, steps_size } = init_game(); // Réinitialiser la course avec les nouveaux paramètres
     startRace(tickspeed, steps, escargots, chances, steps_size).then(checkFinished); // Démarrer la course
 }
@@ -50,6 +50,7 @@ function checkFinished(steps, escargots) {
         let cur_steps = parseInt(cur_escargot.getAttribute('step'));
         if (cur_steps >= steps) {
             alert("L'escargot gagnant est l'escargot " + i);
+            document.getElementById('race_container').removeAttribute('hidden')
             return true;
         }
     }
