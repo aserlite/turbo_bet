@@ -1,21 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section id="controls" >
-    <label for="tickspeed">Nombre d'itération par seconde: </label>
-    <input type="number" id="tickspeed" min="0" value="50" required><br>
 
-    <label for="steps">Nombre d'étapes avant de gagner: </label>
-    <input type="number" id="steps" value="100" required><br>
+<div class="defil">
+    <p>Les jeux d'argent et de hasard peuvent être dangereux : pertes d'argent, conflits familiaux, addiction …
+        Retrouvez nos conseils sur joueurs-info-service.fr et au 09 74 75 13 13, appel non surtaxé. </p>
+</div>
 
-    <label for="escargots">Nombre d'escargots: </label>
-    <input type="number" id="escargots" min="0" value="4" required><br>
 
-    <label for="chances">Chances que chaque escargot a d'avancer (par tick): </label>
-    <input type="number" id="chances" value="5" required><br>
+<div class="container">
+    <h1> Course d'escargots </h1>
+    <img class="banner" src="../static/images/turbo.gif" alt="Turbo" />
 
-    <button onclick="startRaceButtonClicked()">Commencer la course</button>
-</section>
+    <section id="controls">
+        <div class="param">
+            <label for="tickspeed">Nombre d'itération par seconde: </label>
+            <input type="number" id="tickspeed" min="0" value="50" required><br>
+        </div>
+        <div class="param">
+            <label for="steps">Nombre d'étapes avant de gagner: </label>
+            <input type="number" id="steps" value="100" required><br>
+        </div>
+        <div class="param">
+            <label for="escargots">Nombre d'escargots: </label>
+            <input type="number" id="escargots" min="0" value="4" required><br>
+        </div>
+        <div class="param">
+            <label for="chances">Chances que chaque escargot a d'avancer (par tick): </label>
+            <input type="number" id="chances" value="5" required><br>
+        </div>
+
+        <button onclick="startRaceButtonClicked()">Commencer la course</button>
+    </section>
+</div>
+
 
 <section id="plateau">
 </section>

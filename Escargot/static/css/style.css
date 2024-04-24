@@ -1,4 +1,108 @@
-.concurent img{
+/* Styles communs */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
+
+.banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+h1 {
+    position: absolute;
+    left: 50%;
+    margin: 0; 
+    margin-top: 5rem;
+    transform: translateX(-50%);
+    font-family: Cabin;
+    font-size: 4rem;
+    z-index: 1;
+}
+
+/* Styles pour la bannière texte */
+.defil {
+    background-color: black;
+    width: 100%; 
+    height: 2.5rem; 
+    overflow: hidden; 
+    position: relative; 
+}
+
+.defil p {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    white-space: nowrap; 
+    position: absolute;
+    animation: defilement 20s linear infinite;
+    margin: 0; 
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes defilement {
+    0% {left: 100%;} 
+    100% {left: -100%;}
+}
+
+/* Styles pour les paramètres */
+#controls {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 2rem;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    display: grid;
+    grid-template-columns: auto auto; 
+    gap: 1rem; 
+    z-index: 1; 
+}
+
+.param {
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 0.5rem;
+    display: flex; 
+    align-items: center; 
+    padding: 1rem;
+    width: 50%; 
+}
+
+.param label {
+    margin-right: 1rem; 
+    text-align: left;
+}
+
+.param input {
+    background-color: transparent; 
+    border: none;
+    border-bottom: 1px solid black; 
+    font-size: 1.5rem;
+    width: 150%;
+}
+
+/* Styles pour le bouton */
+button {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: none;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+}
+
+/* Styles pour les concurrents */
+.concurent img {
     width: 100px;
-    transform:scaleX(-1);
+    transform: scaleX(-1);
 }
