@@ -1,18 +1,32 @@
+var turboImages = [
+    "static/images/turbobleu.png",
+    "static/images/turbojaune.png",
+    "static/images/turboorange.png",
+    "static/images/turborose.png",
+    "static/images/turborouge.png",
+    "static/images/turbovert.png",
+    "static/images/turboviolet.png"
+];
+
+function getRandomTurboImage() {
+    var randomIndex = Math.floor(Math.random() * turboImages.length);
+    return turboImages[randomIndex];
+}
+
 var plateau = document.getElementById('plateau');
-var turbo = "static/images/turbo.webp";
 
 function init_game() {
     var tickspeed = parseInt(document.getElementById('tickspeed').value);
     var steps = parseInt(document.getElementById('steps').value);
     var escargots = parseInt(document.getElementById('escargots').value);
     var chances = parseInt(document.getElementById('chances').value);
-    var steps_size = (window.innerWidth - 150) / steps; 
+    var steps_size = (window.innerWidth - 150) / steps;
 
     plateau.innerHTML = "";
 
     for (let i = 1; i <= escargots; i++) {
         var concurent_image = document.createElement("img");
-        concurent_image.src = turbo;
+        concurent_image.src = getRandomTurboImage(); // Sélectionne une image turbo aléatoire
         var concurent = document.createElement("div");
         concurent.classList.add('concurent');
         concurent.appendChild(concurent_image);
@@ -23,6 +37,7 @@ function init_game() {
 
     return { tickspeed, steps, escargots, chances, steps_size };
 }
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -41,7 +56,7 @@ function getCookie(name) {
 function startRaceButtonClicked() {
     document.getElementById('race_container').setAttribute('hidden', 'hidden')
     var { tickspeed, steps, escargots, chances, steps_size } = init_game();
-        fetch('/enregistrer_course/', {
+    fetch('/enregistrer_course/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -54,12 +69,12 @@ function startRaceButtonClicked() {
             chances: chances
         })
     })
-    .then(response => {
-        console.log(response)
-    })
-    .catch(error => {
-        console.error('Erreur lors de l\'envoi des données de la course:', error);
-    });
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.error('Erreur lors de l\'envoi des données de la course:', error);
+        });
     startRace(tickspeed, steps, escargots, chances, steps_size).then(checkFinished);
 }
 
@@ -84,7 +99,7 @@ function checkFinished(steps, escargots) {
         if (cur_steps >= steps) {
             alert("L'escargot gagnant est l'escargot " + i);
             document.getElementById('race_container').removeAttribute('hidden')
-            plateau.innerHTML ="";
+            plateau.innerHTML = "";
             return true;
         }
     }
