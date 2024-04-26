@@ -1,14 +1,8 @@
 /* plateau */
 
-.plateau{
-    background-color: #4a7a8a;
-    width: 100vw;
-    height: 100vh;
-}
-
 .concurent {
     display: flex;
-    margin-bottom: 4rem;
+    margin: 4rem 0;
     align-items: center;
 }
 
@@ -41,13 +35,12 @@
   
   .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5rem auto;
     padding: 20px;
     border: 1px solid #888;
     width: 50%;
     border-radius: 0.5rem;
   }
-
 
 
 /* style in modal */
@@ -56,6 +49,7 @@ h1{
     color: #4a7a8a;
     font-size: 32px;
     margin: 2rem;
+    font-family: 'Cabin';
 }
 
 .intro{

@@ -2,8 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-image: url(../images/fond.webp);
-    background-size: cover;
+    background-color: #4a7a8a;
 }
 
 #race #controls {
