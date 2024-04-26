@@ -14,6 +14,7 @@ function getRandomTurboImage() {
 }
 
 var plateau = document.getElementById('plateau');
+var playersReady = 0;
 
 function init_game() {
     var tickspeed = parseInt(document.getElementById('tickspeed').value);
@@ -54,9 +55,9 @@ function getCookie(name) {
 }
 
 function startRaceButtonClicked() {
-    document.getElementById('race_container').setAttribute('hidden', 'hidden')
     var { tickspeed, steps, escargots, chances, steps_size } = init_game();
-    fetch('/enregistrer_course/', {
+    document.getElementById('race_container').setAttribute('hidden', 'hidden')
+        fetch('/enregistrer_course/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -69,13 +70,79 @@ function startRaceButtonClicked() {
             chances: chances
         })
     })
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.error('Erreur lors de l\'envoi des données de la course:', error);
+    .then(response => {
+        console.log(response)
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'envoi des données de la course:', error);
+    });
+    selectPlayers(tickspeed, steps, escargots, chances, steps_size)
+}
+function selectPlayers(tickspeed, steps, escargots, chances, steps_size){
+    let numberOfPlayers;
+    while(!numberOfPlayers){
+        numberOfPlayers = parseInt(prompt("Entrez le nombre de joueurs :"));
+    }
+
+    for (let i = 1; i <= numberOfPlayers; i++) {
+        var playerForm = document.createElement("form");
+        playerForm.setAttribute('id',"form_player_"+i)
+        var nameLabel = document.createElement("label");
+        nameLabel.textContent = "Joueur " + i + " : Nom ";
+        var nameInput = document.createElement("input");
+        nameInput.type = "text";
+        nameInput.required = "required";
+        nameInput.name = "playerName" + i;
+        var escargotLabel = document.createElement("label");
+        escargotLabel.textContent = "Escargot ";
+        var escargotSelect = document.createElement("select");
+        escargotSelect.name = "escargot" + i;
+
+        for (let j = 1; j <= escargots; j++) {
+            var option = document.createElement("option");
+            option.value = j;
+            option.textContent = "Escargot " + j;
+            escargotSelect.appendChild(option);
+        }
+
+        var submitButton = document.createElement("button"); // Bouton de soumission
+        submitButton.type = "submit";
+        submitButton.textContent = "Pret";
+
+        playerForm.appendChild(nameLabel);
+        playerForm.appendChild(nameInput);
+        playerForm.appendChild(escargotLabel);
+        playerForm.appendChild(escargotSelect);
+        playerForm.appendChild(submitButton); // Ajout du bouton de soumission au formulaire
+
+        plateau.appendChild(playerForm);
+
+        // Création de variables locales pour chaque joueur
+        let currentPlayerForm = playerForm;
+        let currentPlayerNameInput = nameInput;
+        let currentPlayerEscargotSelect = escargotSelect;
+
+        playerForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var playerName = currentPlayerNameInput.value;
+            var selectedEscargot = currentPlayerEscargotSelect.value;
+            var player = {
+                name: playerName,
+                escargot: selectedEscargot
+            };
+            savePari(player);
+            playersReady++;
+            if (playersReady === numberOfPlayers) {
+                startRace(tickspeed, steps, escargots, chances, steps_size).then(checkFinished);
+            }
+            currentPlayerForm.remove();
         });
-    startRace(tickspeed, steps, escargots, chances, steps_size).then(checkFinished);
+    }
+}
+
+
+async function savePari(player){
+    console.log(player)
 }
 
 async function startRace(tickspeed, steps, escargots, chances, steps_size) {
@@ -99,7 +166,7 @@ function checkFinished(steps, escargots) {
         if (cur_steps >= steps) {
             alert("L'escargot gagnant est l'escargot " + i);
             document.getElementById('race_container').removeAttribute('hidden')
-            plateau.innerHTML = "";
+            plateau.innerHTML ="";
             return true;
         }
     }
