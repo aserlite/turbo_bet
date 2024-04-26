@@ -1,25 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
+
+<div class="container" id="race_container">
     <img class="banner" src="../static/images/turbo.gif" alt="Turbo" />
 
     <section id="controls">
-        <h1>Course d'escargots</h1>
+    <h1> Course d'escargots </h1>
         <div class="param">
-            <label for="tickspeed">Nombre d'itérations par seconde :</label>
+            <label for="tickspeed">Nombre d'itération par seconde: </label>
             <input type="number" id="tickspeed" min="0" value="50" required><br>
         </div>
         <div class="param">
-            <label for="steps">Nombre d'étapes avant de gagner :</label>
+            <label for="steps">Nombre d'étapes avant de gagner: </label>
             <input type="number" id="steps" value="100" required><br>
         </div>
         <div class="param">
-            <label for="escargots">Nombre d'escargots :</label>
+            <label for="escargots">Nombre d'escargots: </label>
             <input type="number" id="escargots" min="0" value="4" required><br>
         </div>
         <div class="param">
-            <label for="chances">Chances que chaque escargot a d'avancer (par tick) :</label>
+            <label for="chances">Chances que chaque escargot a d'avancer (par tick): </label>
             <input type="number" id="chances" value="5" required><br>
         </div>
 
@@ -27,5 +28,7 @@
     </section>
 </div>
 
-<section id="plateau"></section>
+
+<section id="plateau">
+</section>
 {% endblock %}
