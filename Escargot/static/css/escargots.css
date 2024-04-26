@@ -1,11 +1,21 @@
+.plateau{
+    margin-top: 5rem;
+}
+
+
+.concurent {
+    display: flex;
+    margin-bottom: 4rem;
+    align-items: center;
+}
+
 .concurent img {
     width: 100px;
     transform: scaleX(-1);
 }
 
-.arrivee-image {
+.drapeau {
     position: absolute;
-    right: 5rem; 
-    visibility: visible;
-    z-index: 1;
+    right: 0; 
+    transform: rotate(90deg) !important;
 }
