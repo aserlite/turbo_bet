@@ -1,8 +1,8 @@
-#race {
+body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-image: url(../images/turbo.gif);
+    background-image: url(../images/fond.webp);
     background-size: cover;
 }
 
