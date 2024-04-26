@@ -23,11 +23,44 @@ function init_game() {
 
     return { tickspeed, steps, escargots, chances, steps_size };
 }
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 
 function startRaceButtonClicked() {
     document.getElementById('race_container').setAttribute('hidden', 'hidden')
-    var { tickspeed, steps, escargots, chances, steps_size } = init_game(); // Réinitialiser la course avec les nouveaux paramètres
-    startRace(tickspeed, steps, escargots, chances, steps_size).then(checkFinished); // Démarrer la course
+    var { tickspeed, steps, escargots, chances, steps_size } = init_game();
+        fetch('/enregistrer_course/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({
+            tickspeed: tickspeed,
+            steps: steps,
+            escargots: escargots,
+            chances: chances
+        })
+    })
+    .then(response => {
+        console.log(response)
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'envoi des données de la course:', error);
+    });
+    startRace(tickspeed, steps, escargots, chances, steps_size).then(checkFinished);
 }
 
 async function startRace(tickspeed, steps, escargots, chances, steps_size) {
