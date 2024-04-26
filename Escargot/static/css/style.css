@@ -11,20 +11,17 @@ body {
 
 .banner {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     opacity: 0.5;
-    z-index: 0;
 }
 
 h1 {
-    margin: 0; 
-    grid-column: span 2; 
-    margin-top: 2.5rem;
+    margin: 0;
     font-family: Cabin;
-    font-size: 4rem;
-    z-index: 1;
+    font-size: 2rem;
+    margin-top: 2.5rem;
 }
+
 
 /* Styles pour la bannière texte */
 .defil {
@@ -52,40 +49,37 @@ h1 {
     100% {left: -100%;}
 }
 
+
 /* Styles pour les paramètres */
 #controls {
-    position: absolute;
-    top: 35%;
-    width: 90vw;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     padding-top: 2rem;
     font-size: 1.5rem;
     font-family: sans-serif;
     display: grid;
-    grid-template-columns: auto auto; 
-    gap: 1rem; 
-    z-index: 1; 
+    grid-template-columns: auto auto;
+    gap: 1rem;
+    z-index: 1;
 }
 
 .param {
     background-color: white;
     opacity: 0.8;
     border-radius: 0.5rem;
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     padding: 1rem;
 }
 
 .param label {
-    margin-right: 1rem; 
+    margin-right: 1rem;
     text-align: left;
 }
 
 .param input {
-    background-color: transparent; 
+    background-color: transparent;
     border: none;
-    border-bottom: 1px solid black; 
+    border-bottom: 1px solid black;
     font-size: 1.5rem;
     width: 150%;
 }
@@ -97,8 +91,9 @@ button {
     border: none;
     font-size: 1.5rem;
     font-family: sans-serif;
-    grid-column: span 2; 
+    grid-column: span 2;
 }
+
 
 /* Styles pour les concurrents */
 .concurent img {
