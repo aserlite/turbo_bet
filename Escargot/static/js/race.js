@@ -51,6 +51,7 @@ function checkFinished(steps, escargots) {
         if (cur_steps >= steps) {
             alert("L'escargot gagnant est l'escargot " + i);
             document.getElementById('race_container').removeAttribute('hidden')
+            plateau.innerHTML ="";
             return true;
         }
     }
