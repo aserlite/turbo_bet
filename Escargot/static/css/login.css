@@ -1,3 +1,10 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #4a7a8a;
+}
+
 #login {
     position: absolute;
     top: 50%;
@@ -26,29 +33,38 @@
     margin: 1rem;
 }
 
-#login img{
+#login img {
     height: 50vh;
 }
 
-
-#login .errorlist{
+/* extra info */
+#login .errorlist {
     list-style-type: none;
     color: red;
 }
 
+span{
+    display: none;
+}
+
+ul:not(.errorlist){
+    display: none;
+}
+
+
 /* form */
 
-#login form p{
+#login form p {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#login form p label{
+#login form p label {
     font-size: 20px;
 }
 
-#login form p input{
+#login form p input {
     width: 50%;
     text-align: center;
     padding: 0.5rem;
@@ -66,12 +82,13 @@
     border: none;
     font-size: 1.5rem;
     opacity: 0.8;
+    margin: 0.5rem;
     width: 80%;
     color: white;
     font-weight: 500;
     background-color: #4a7a8a;
 }
 
-#login button:hover{
+#login button:hover {
     background-color: #243b43;
 }

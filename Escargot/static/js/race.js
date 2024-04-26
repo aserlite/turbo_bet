@@ -13,6 +13,20 @@ function getRandomTurboImage() {
     return turboImages[randomIndex];
 }
 
+function staze(escargotIndex, steps_size) {
+    let cur_escargot = document.getElementById('escargot_' + escargotIndex);
+    let cur_steps = cur_escargot.getAttribute('step');
+    let gap = steps_size * parseInt(cur_steps);
+    cur_escargot.setAttribute('step', parseInt(cur_steps) + 1);
+    cur_escargot.style.marginLeft = gap + 'px';
+
+    let arrivee_image = document.createElement("img");
+    arrivee_image.src = "static/images/arrivee.png"; 
+    arrivee_image.classList.add('arrivee-image');
+    cur_escargot.appendChild(arrivee_image);
+}
+
+
 var plateau = document.getElementById('plateau');
 
 function init_game() {
@@ -26,7 +40,7 @@ function init_game() {
 
     for (let i = 1; i <= escargots; i++) {
         var concurent_image = document.createElement("img");
-        concurent_image.src = getRandomTurboImage(); // Sélectionne une image turbo aléatoire
+        concurent_image.src = getRandomTurboImage(); 
         var concurent = document.createElement("div");
         concurent.classList.add('concurent');
         concurent.appendChild(concurent_image);
