@@ -2,25 +2,28 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
+    background-color: #4a7a8a;
 }
 
-.container {
+#race .container {
     position: relative;
     text-align: center;
     margin: 0;
     padding: 0;
 }
 
-.banner {
+#race .banner {
+    top: 0;
+    left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 99vh;
     object-fit: cover;
     opacity: 0.5;
     z-index: 0;
 }
 
-h1 {
-    margin: 0;
+#race h1 {
     grid-column: span 2;
     margin-top: 2.5rem;
     font-family: Cabin;
@@ -28,86 +31,56 @@ h1 {
     z-index: 1;
 }
 
-/* Styles pour la bannière texte */
-.defil {
-    background-color: black;
-    width: 100%;
-    height: 2.5rem;
-    overflow: hidden;
-    position: relative;
-}
-
-.defil p {
-    color: white;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    white-space: nowrap;
-    position: absolute;
-    animation: defilement 20s linear infinite;
-    margin: 0;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-@keyframes defilement {
-    0% {
-        left: 100%;
-    }
-
-    100% {
-        left: -100%;
-    }
-}
-
 /* Styles pour les paramètres */
-#controls {
+#race #controls {
     position: absolute;
-    top: 35%;
+    top: 50%;
     width: 90vw;
     left: 50%;
     transform: translate(-50%, -50%);
     padding-top: 2rem;
     font-size: 1.5rem;
-    font-family: sans-serif;
     display: grid;
     grid-template-columns: auto auto;
     gap: 1rem;
     z-index: 1;
 }
 
-.param {
+#race .param {
     background-color: white;
     opacity: 0.8;
     border-radius: 0.5rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     padding: 1rem;
 }
 
-.param label {
+#race .param label {
     margin-right: 1rem;
     text-align: left;
 }
 
-.param input {
+#race .param input {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid black;
     font-size: 1.5rem;
-    width: 150%;
+    width: 20%;
+    text-align: center;
 }
 
 /* Styles pour le bouton */
-button {
+#race button {
     border-radius: 0.5rem;
     padding: 1rem;
     border: none;
     font-size: 1.5rem;
-    font-family: sans-serif;
     grid-column: span 2;
+    opacity: 0.8;
 }
 
-/* Styles pour les concurrents */
+/* Styles pour les escargots */
 .concurent img {
     width: 100px;
     transform: scaleX(-1);

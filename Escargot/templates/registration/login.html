@@ -1,12 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Connexion</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
 
-        <button type="submit">Connexion</button>
-    </form>
+<section id="login">
+
+    <div class="login-image">
+        <img src="../../static/images/turbo2.gif" alt="turbo">
+    </div>
+
+    <div class="infoform">
+        <h1>Connexion</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit">Connexion</button>
+        </form>
+    </div>
+
+</section>
 
 {% endblock %}
