@@ -13,20 +13,6 @@ function getRandomTurboImage() {
     return turboImages[randomIndex];
 }
 
-function staze(escargotIndex, steps_size) {
-    let cur_escargot = document.getElementById('escargot_' + escargotIndex);
-    let cur_steps = cur_escargot.getAttribute('step');
-    let gap = steps_size * parseInt(cur_steps);
-    cur_escargot.setAttribute('step', parseInt(cur_steps) + 1);
-    cur_escargot.style.marginLeft = gap + 'px';
-
-    let arrivee_image = document.createElement("img");
-    arrivee_image.src = "static/images/arrivee.png"; 
-    arrivee_image.classList.add('arrivee-image');
-    cur_escargot.appendChild(arrivee_image);
-}
-
-
 var plateau = document.getElementById('plateau');
 
 function init_game() {
