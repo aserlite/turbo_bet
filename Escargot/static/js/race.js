@@ -23,16 +23,23 @@ function init_game() {
     var steps_size = (window.innerWidth - 150) / steps;
 
     plateau.innerHTML = "";
+    plateau.classList.add('plateau');
 
     for (let i = 1; i <= escargots; i++) {
         var concurent_image = document.createElement("img");
         concurent_image.src = getRandomTurboImage(); 
+        
         var concurent = document.createElement("div");
         concurent.classList.add('concurent');
         concurent.appendChild(concurent_image);
         concurent.id = "escargot_" + i;
         concurent.setAttribute('step', '0');
         plateau.appendChild(concurent);
+
+        var drapeau_img = document.createElement("img");
+        drapeau_img.src = "static/images/arrivee.png" 
+        drapeau_img.classList.add('drapeau');
+        concurent.appendChild(drapeau_img);
     }
 
     return { tickspeed, steps, escargots, chances, steps_size };
