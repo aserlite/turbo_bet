@@ -83,6 +83,16 @@ function selectPlayers(tickspeed, steps, escargots, chances, steps_size) {
     titre.textContent = "Lancez les paris!";
     modalContent.appendChild(titre);
 
+    var modal = document.createElement('div');
+    modal.id = 'modal';
+    modal.classList.add('modal');
+
+    var modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+    var titre = document.createElement('h1');
+    titre.textContent = "Lancez les paris!";
+    modalContent.appendChild(titre);
+
     for (let i = 1; i <= numberOfPlayers; i++) {
         var playerForm = document.createElement("form");
         playerForm.setAttribute('id', "form_player_" + i);
@@ -144,6 +154,7 @@ function selectPlayers(tickspeed, steps, escargots, chances, steps_size) {
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 }
+
 
 
 async function savePari(player) {
