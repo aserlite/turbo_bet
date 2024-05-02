@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
 import json
-from .models import CourseEscargot
+from .models import CourseEscargot, Player
 
 def home(request):
     return render(request, 'home.html')
@@ -38,12 +38,34 @@ def enregistrer_course(request):
         steps = data.get('steps')
         escargots = data.get('escargots')
         chances = data.get('chances')
+        ref = data.get('ref')
+        participants = data.get('participants')
+        winner = data.get('winner')
         course = CourseEscargot.objects.create(
             user=request.user,
+            ref=ref,
             tickspeed=tickspeed,
             steps=steps,
             escargots=escargots,
-            chances=chances
+            chances=chances,
+            participants=participants,
+            winner=winner,
+        )
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'error': 'Une erreur s\'est produite.'})
+
+def enregistrer_joueur(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        name = data.get('name')
+        bet = data.get('bet')
+        race_ref = data.get('race_ref')
+        joueur = Player.objects.create(
+            user=request.user,
+            name=name,
+            bet=bet,
+            race_ref=race_ref,
         )
         return JsonResponse({'success': True})
     else:
