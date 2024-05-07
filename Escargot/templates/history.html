@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block cssplus %}
+<link rel="stylesheet" href="/static/css/history.css">
+{% endblock %}
+
+{% block content %}
+<section id="history">
+    <h1>Historique</h1>
+    {% for entry in history_data %}
+    <div class="course-entry">
+        <div class="course-details">
+            <h3>Course {{ entry.course.ref }}  - Date: {{ entry.course.date }}</h3>
+            <ul class="parameter-list">
+                <li><span>Tickspeed:</span> {{ entry.course.tickspeed }}</li>
+                <li><span>Etapes avant arrivée:</span> {{ entry.course.steps }}</li>
+                <li><span>Nombre d'escargots:</span> {{ entry.course.escargots }}</li>
+                <li><span>Chances d'avancer (1/x):</span> {{ entry.course.chances }}</li>
+                <br>
+                <li><span>Escargot gagnant:</span> {{ entry.course.winner }}</li>
+            </ul>
+        </div>
+        <br>
+        <div class="player-list">
+            <h3>Joueurs et leurs paris :</h3>
+            <ul>
+                {% for player in entry.players %}
+                {% if player.bet == entry.course.winner %}
+                <li class="winner">{{ player.name }} a parié sur l'escargot vainqueur (escargot {{ player.bet }})</li>
+                {% else %}
+                <li>{{ player.name }} a parié sur l'escargot {{ player.bet }}</li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+</section>
+{% endblock %}

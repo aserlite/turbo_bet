@@ -1,42 +1,38 @@
-var turboImages = ["static/images/turbobleu.png", "static/images/turbojaune.png", "static/images/turboorange.png", "static/images/turborose.png", "static/images/turborouge.png", "static/images/turbovert.png", "static/images/turboviolet.png"];
-let all_players = []
-let race_id = Date.now()
+let turboImages = ["static/images/turbobleu.png", "static/images/turbojaune.png", "static/images/turboorange.png", "static/images/turborose.png", "static/images/turborouge.png", "static/images/turbovert.png", "static/images/turboviolet.png"];
+let all_players = [];
+let race_id = Date.now();
 let numberOfPlayers;
 
-/*
-Faire la page de fin avec le winner affiché Si qlq a parié dessus
-Faire un classement
- */
 function getRandomTurboImage() {
-    var randomIndex = Math.floor(Math.random() * turboImages.length);
+    let randomIndex = Math.floor(Math.random() * turboImages.length);
     return turboImages[randomIndex];
 }
 
-var plateau = document.getElementById('plateau');
-var playersReady = 0;
+let plateau = document.getElementById('plateau');
+let playersReady = 0;
 
 function init_game() {
-    var tickspeed = parseInt(document.getElementById('tickspeed').value);
-    var steps = parseInt(document.getElementById('steps').value);
-    var escargots = parseInt(document.getElementById('escargots').value);
-    var chances = parseInt(document.getElementById('chances').value);
-    var steps_size = (window.innerWidth - 150) / steps;
+    let tickspeed = parseInt(document.getElementById('tickspeed').value);
+    let steps = parseInt(document.getElementById('steps').value);
+    let escargots = parseInt(document.getElementById('escargots').value);
+    let chances = parseInt(document.getElementById('chances').value);
+    let steps_size = (window.innerWidth - 150) / steps;
 
     plateau.innerHTML = "";
     plateau.classList.add('plateau');
 
     for (let i = 1; i <= escargots; i++) {
-        var concurent_image = document.createElement("img");
+        let concurent_image = document.createElement("img");
         concurent_image.src = getRandomTurboImage();
 
-        var concurent = document.createElement("div");
+        let concurent = document.createElement("div");
         concurent.classList.add('concurent');
         concurent.appendChild(concurent_image);
         concurent.id = "escargot_" + i;
         concurent.setAttribute('step', '0');
         plateau.appendChild(concurent);
 
-        var drapeau_img = document.createElement("img");
+        let drapeau_img = document.createElement("img");
         drapeau_img.src = "static/images/arrivee.png"
         drapeau_img.classList.add('drapeau');
         concurent.appendChild(drapeau_img);
@@ -61,63 +57,51 @@ function getCookie(name) {
 }
 
 function startRaceButtonClicked() {
-    var {tickspeed, steps, escargots, chances, steps_size} = init_game();
+    let {tickspeed, steps, escargots, chances, steps_size} = init_game();
     document.getElementById('race_container').setAttribute('hidden', 'hidden')
     selectPlayers(tickspeed, steps, escargots, chances, steps_size)
 }
-
 
 function selectPlayers(tickspeed, steps, escargots, chances, steps_size) {
     while (!numberOfPlayers) {
         numberOfPlayers = parseInt(prompt("Entrez le nombre de joueurs :"));
     }
-    console.log(numberOfPlayers)
 
-    var modal = document.createElement('div');
+    let modal = document.createElement('div');
     modal.id = 'modal';
     modal.classList.add('modal');
 
-    var modalContent = document.createElement('div');
+    let modalContent = document.createElement('div');
     modalContent.classList.add('modal-content');
-    var titre = document.createElement('h1');
-    titre.textContent = "Lancez les paris!";
-    modalContent.appendChild(titre);
-
-    var modal = document.createElement('div');
-    modal.id = 'modal';
-    modal.classList.add('modal');
-
-    var modalContent = document.createElement('div');
-    modalContent.classList.add('modal-content');
-    var titre = document.createElement('h1');
+    let titre = document.createElement('h1');
     titre.textContent = "Lancez les paris!";
     modalContent.appendChild(titre);
 
     for (let i = 1; i <= numberOfPlayers; i++) {
-        var playerForm = document.createElement("form");
+        let playerForm = document.createElement("form");
         playerForm.setAttribute('id', "form_player_" + i);
-        var nameLabel = document.createElement("label");
+        let nameLabel = document.createElement("label");
         nameLabel.textContent = "Joueur " + i;
         nameLabel.classList.add('intro');
 
-        var nameInput = document.createElement("input");
+        let nameInput = document.createElement("input");
         nameInput.type = "text";
         nameInput.required = "required";
         nameInput.name = "playerName" + i;
         nameInput.classList.add('nbjoueur');
-        var escargotLabel = document.createElement("label");
+        let escargotLabel = document.createElement("label");
         escargotLabel.textContent = " vote pour l' ";
-        var escargotSelect = document.createElement("select");
+        let escargotSelect = document.createElement("select");
         escargotSelect.name = "escargot" + i;
 
         for (let j = 1; j <= escargots; j++) {
-            var option = document.createElement("option");
+            let option = document.createElement("option");
             option.value = j;
             option.textContent = "escargot " + j;
             escargotSelect.appendChild(option);
         }
 
-        var submitButton = document.createElement("button");
+        let submitButton = document.createElement("button");
         submitButton.type = "submit";
         submitButton.textContent = "GO!";
 
@@ -129,16 +113,15 @@ function selectPlayers(tickspeed, steps, escargots, chances, steps_size) {
 
         modalContent.appendChild(playerForm);
 
-
         let currentPlayerForm = playerForm;
         let currentPlayerNameInput = nameInput;
         let currentPlayerEscargotSelect = escargotSelect;
 
         playerForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            var playerName = currentPlayerNameInput.value;
-            var selectedEscargot = currentPlayerEscargotSelect.value;
-            var player = {
+            let playerName = currentPlayerNameInput.value;
+            let selectedEscargot = currentPlayerEscargotSelect.value;
+            let player = {
                 name: playerName, bet: selectedEscargot, race_ref: race_id,
             };
             savePari(player);
@@ -154,8 +137,6 @@ function selectPlayers(tickspeed, steps, escargots, chances, steps_size) {
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 }
-
-
 
 async function savePari(player) {
     fetch('/enregistrer_joueur/', {
@@ -244,24 +225,23 @@ function save_race(race_id, tickspeed, steps, escargots, chances, winner, number
     });
 }
 
-
 function afficherModalRecap(race_id, winner) {
-    var modal = document.createElement('div');
+    let modal = document.createElement('div');
     modal.classList.add('modal');
-    var modalContent = document.createElement('div');
+    let modalContent = document.createElement('div');
     modalContent.classList.add('modal-content');
 
-    var refreshButton = document.createElement('button');
+    let refreshButton = document.createElement('button');
     refreshButton.classList.add('refresh-button');
     refreshButton.textContent = 'Relancer la course';
     refreshButton.addEventListener('click', function() {
         location.reload(); // Recharger la page lors du clic sur le bouton de rafraîchissement
     });
 
-    var titre = document.createElement('h1');
+    let titre = document.createElement('h1');
     titre.textContent = "Résultats de la course";
 
-    var resultat = document.createElement('p');
+    let resultat = document.createElement('p');
     resultat.textContent = "L'escargot gagnant est l'escargot " + winner + "!";
 
     modalContent.appendChild(refreshButton);
@@ -269,7 +249,7 @@ function afficherModalRecap(race_id, winner) {
     modalContent.appendChild(resultat);
     all_players.forEach(player => {
         if (player.bet == winner) {
-            var joueurGagnant = document.createElement('p');
+            let joueurGagnant = document.createElement('p');
             joueurGagnant.textContent = player.name + " a parié sur l'escargot gagnant!";
             modalContent.appendChild(joueurGagnant);
         }
@@ -278,4 +258,3 @@ function afficherModalRecap(race_id, winner) {
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 }
-

@@ -70,3 +70,15 @@ body {
 #race button:hover{
     background-color: #243b43;
 }
+
+.race_header{
+    grid-column: span 2;
+}
+
+.toHistory{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    color: #243b43;
+}

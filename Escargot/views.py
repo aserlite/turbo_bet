@@ -13,6 +13,17 @@ def home(request):
 def race(request):
     return render(request, 'race.html')
 
+
+@login_required
+def history(request):
+    courses = CourseEscargot.objects.filter(user=request.user).order_by('-date_created')
+    history_data = []
+    for course in courses:
+        players = Player.objects.filter(race_ref=course.ref)
+        course.date = course.date_created.strftime("%d %b %Y, %H:%M:%S")
+        player_data = [{'name': player.name, 'bet': player.bet} for player in players]
+        history_data.append({'course': course, 'players': player_data})
+    return render(request, 'history.html', {'history_data': history_data})
 def authView(request):
  if request.method == "POST":
   form = UserCreationForm(request.POST or None)

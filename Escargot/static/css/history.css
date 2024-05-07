@@ -1,0 +1,63 @@
+#history {
+    padding: 20px;
+}
+
+.course-entry {
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #ddd;
+}
+
+.course-entry h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.parameter-list {
+    list-style: none;
+    padding: 0;
+}
+
+.parameter-list li {
+    margin-bottom: 5px;
+}
+
+.parameter-list li span {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.player-list {
+    margin-top: 20px;
+}
+
+.player-list h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.player-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.player-list ul li {
+    margin-bottom: 5px;
+}
+
+.winner {
+    color: #58ac5f;
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+body{
+    background: #4a7a8a;
+    font-family: sans-serif;
+}
+
+h1{
+    color:white;
+}
