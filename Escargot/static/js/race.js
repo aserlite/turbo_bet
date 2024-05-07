@@ -233,7 +233,7 @@ function afficherModalRecap(race_id, winner) {
 
     let refreshButton = document.createElement('button');
     refreshButton.classList.add('refresh-button');
-    refreshButton.textContent = 'Relancer la course';
+    refreshButton.textContent = 'Relancer une course';
     refreshButton.addEventListener('click', function() {
         location.reload(); // Recharger la page lors du clic sur le bouton de rafraîchissement
     });
